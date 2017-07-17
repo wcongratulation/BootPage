@@ -78,7 +78,7 @@ export default {
         // AJAX地址
         url: {
             type: String,
-            default: 'http://192.168.2.60:8080/xm-web-sys/sysUser'
+            default: 'http://192.168.1.173:8080/xm-web-sys/sysUser'
         },
 
         // 显示页数
@@ -228,7 +228,7 @@ export default {
               	})
                 .then(function (response) {
                     this.pageTotal = response.data.page_num
-					console.log(response);
+//					console.log(JSON.stringify(response));
                     if (this.pages.length !== this.pageLen || this.pageTotal < this.pageLen) {
                         this.getPages()
                     }
