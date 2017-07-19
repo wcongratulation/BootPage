@@ -20,6 +20,11 @@
 				<th>登录失败次数</th>
 				<th>备注</th>
 				<th>账户是否可用</th>
+				<th>账户是否可用</th>
+				<th>账户是否可用</th>
+				<th>账户是否可用</th>
+				<th>账户是否可用</th>
+				<th>账户是否可用</th>
 				<th>操作</th>
 			</tr>
         </thead>
@@ -33,13 +38,18 @@
 			<tr class="odd gradeX" v-for="item in tableList" track-by="$index">
 				<td><input type="checkbox" class="checkboxes" value="1" /></td>
 				<td style="display: none;">{{ item.id}}</td>
-				<td>{{ item.userName}}</td>
-				<td>{{ item.realName}}</td>
 				<td>{{ item.email}}</td>
-				<td>{{ item.mobilePhone}}</td>
-				<td>{{ item.lastLoginTime}}</td>
-				<td>{{ item.lastLoginFailCount}}</td>
+				<td>{{ item.handler}}</td>
+				<td>{{ item.isAvailable}}</td>
+				<td>{{ item.isDeleted}}</td>
+				<td>{{ item.isShow}}</td>
 				<td>{{ item.memo}}</td>
+				<td>{{ item.mobilePhone}}</td>
+				<td>{{ item.pK}}</td>
+				<td>{{ item.password}}</td>
+				<td>{{ item.realName}}</td>
+				<td>{{ item.userId}}</td>
+				<td>{{ item.userName}}</td>
 				<td>{{ item.isAvailable==1?'可用':'不可用'}}</td>
 				<td>
 					<button type="button" class="btn blue submitButton">
@@ -146,7 +156,7 @@ export default {
             lenArr: [5, 50, 100], // 每页显示长度设置
             pageLen: 5, // 可显示的分页数
 //          url: '/bootpage/', // 请求路径
-            url: 'http://192.168.1.173:8080/xm-web-sys/sysUser',
+            url: "http://192.168.2.60:8080/xm-web-sys/sysUser",
             param: {}, // 传递参数
             tableList: [] // 分页组件传回的分页后数据
         }
@@ -164,7 +174,7 @@ export default {
         // 分页组件传回的表格数据（这里即为服务器传回的数据）
         'data' (data) {
             this.tableList = data.data
-//        console.log(JSON.stringify(this.tableList));
+	        //console.log(JSON.stringify(this.tableList));
         },
 
         // 刷新数据

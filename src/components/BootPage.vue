@@ -12,7 +12,7 @@
                     <span aria-hidden="true">‹</span>
                 </a>
             </li>
-            <li v-for="page in pages" :class="activeNum === $index ? 'active' : ''">
+            <li v-for="page in pages" track-by="$index" :class="activeNum === $index ? 'active' : ''">
                 <a href="javascript:void(0)" v-text="page" @click="onPageClick($index)"></a>
             </li>
             <li>
@@ -78,7 +78,7 @@ export default {
         // AJAX地址
         url: {
             type: String,
-            default: 'http://192.168.1.173:8080/xm-web-sys/sysUser'
+            default: 'http://192.168.2.60:8080/xm-web-sys/sysUser'
         },
 
         // 显示页数
@@ -219,7 +219,7 @@ export default {
                 
                 this.$dispatch('data', newData)
             } else {
-                this.param.active = this.pages[this.activeNum]
+	            this.param.active = this.pages[this.activeNum]
                 this.param.len = this.len
               	this.$http({
                   url: this.url, 
@@ -227,8 +227,9 @@ export default {
                   data: this.param
               	})
                 .then(function (response) {
-                    this.pageTotal = response.data.page_num
-//					console.log(JSON.stringify(response));
+                	this.pageTotal = response.data.data.pageSize;
+					console.log(response.data.data.pageSize
+)
                     if (this.pages.length !== this.pageLen || this.pageTotal < this.pageLen) {
                         this.getPages()
                     }
